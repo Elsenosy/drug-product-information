@@ -1,9 +1,7 @@
 ﻿*.o
 *.exe
 *.dev
-*.ico
-*.rc
 *.layout
 *.win
 *.html
-*.pptx
+*.gch

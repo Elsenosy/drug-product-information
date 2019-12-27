@@ -26,7 +26,7 @@ template <class keyType, class dataType> class LinkedList{
 		int listSize() const;
 		
 		void updateData(const dataType &);
-		void retrieveData(const dataType &) const;
+		void retrieve(dataType &)const;
 		
 		void insertFirst(const keyType&, const dataType&);
 		void insertAfter(const keyType&, const dataType&);
@@ -47,8 +47,6 @@ template <class keyType, class dataType> class LinkedList{
 		void traverse();
 		void evenOddOrder();
 		
-		void func1(dataType *head);
-		void myFunc();
 		private:
 			class Node{
 				public:
@@ -63,4 +61,6 @@ template <class keyType, class dataType> class LinkedList{
 			
 			typedef Node * NodePointer;
 };
+
+#include "linkedList.cpp"
 #endif

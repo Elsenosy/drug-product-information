@@ -5,6 +5,8 @@
 
     @author Taha Elseosy <tahaelseosy@gmail.com>
 */
+#ifndef LINKEDLIST_IMP____
+#define LINKEDLIST_IMP____
 #include "linkedList.h"
 #include <iostream>
 using namespace std;
@@ -71,6 +73,11 @@ template <class keyType, class dataType> void LinkedList<keyType, dataType>::ins
 	}
 }
 
+// Retrieve node
+template <class keyType, class dataType> void LinkedList<keyType, dataType>::retrieve(dataType &pr) const{
+	pr = cursor->data;
+}
+
 // Check if list is empty or not
 template <class keyType, class dataType> bool LinkedList<keyType, dataType>::curIsEmpty() const{
 	return cursor == NULL ? true : false;
@@ -98,27 +105,6 @@ template <class keyType, class dataType> void LinkedList<keyType, dataType>::toE
 			advance();
 	}
 }
-
-template <class keyType, class dataType> void LinkedList<keyType, dataType>::display() const{
-	if(!curIsEmpty()){
-		cout << "Student id: "<< cursor->data.id << endl;
-		cout << "Student name: "<< cursor->data.name<<endl;
-		cout << "Student phone: "<< cursor->data.phone<<endl;
-		cout << " --- "<<endl;
-	}
-}
-
-template <class keyType, class dataType> void LinkedList<keyType, dataType>::displayAll(){
-	toFirst();
-	while(!curIsEmpty()){
-		cout << "Student id: "<< cursor->data.id << endl;
-		cout << "Student name: "<< cursor->data.name<<endl;
-		cout << "Student phone: "<< cursor->data.phone<<endl;
-		cout << " --- "<<endl;
-		advance();
-	}
-}
-
 
 template <class keyType, class dataType> void LinkedList<keyType, dataType>::displayAllInt(){
 	toFirst();
@@ -173,80 +159,5 @@ template <class keyType, class dataType> void LinkedList<keyType, dataType>::mak
 template <class keyType, class dataType> LinkedList<keyType, dataType>::~LinkedList(){
 	makeListEmpty();
 }
+#endif
 
-
-// Even, odd nodes
-template <class keyType, class dataType> void LinkedList<keyType, dataType>::evenOddOrder(){
-
-    /* Get pointer to the last node */
-    toEnd();  
-    Node *new_end = cursor;  
-    Node *end = cursor;
-  
-    /* Consider all odd nodes before the first  
-     even node and move then after end */
-    toFirst();
-    while (cursor->data % 2 != 0 && cursor != end)  
-    {  
-        new_end->next = cursor;  
-        cursor = cursor->next;  
-        new_end->next->next = NULL;  
-        new_end = new_end->next;  
-    }  
-  
-    // 10->8->17->17->15  
-    /* Do following steps only if  
-    there is any even node */
-    if (cursor->data%2 == 0)  
-    {  
-        /* Change the head pointer to  
-        point to first even node */
-        head = cursor;  
-  
-        /* now current points to 
-        the first even node */
-        while (cursor != new_end)  
-        {  
-            if ( (cursor->data) % 2 == 0 )  
-            {  
-                prev = cursor;  
-                cursor = cursor->next;  
-            }  
-            else
-            {  
-                /* break the link between 
-                prev and current */
-                prev->next = cursor->next;  
-//  
-                /* Make next of curr as NULL */
-                cursor->next = NULL;  
-  
-                /* Move curr to end */
-                new_end->next = cursor;  
-  
-                /* make curr as new end of list */
-                new_end = cursor;  
-  
-                /* Update current pointer to 
-                next of the moved node */
-                cursor = prev->next;  
-            }  
-        }  
-    }  
-  
-    /* We must have prev set before executing  
-    lines following this statement */
-    else prev = cursor;  
-  
-    /* If there are more than 1 odd nodes  
-    and end of original list is odd then  
-    move this node to end to maintain  
-    same order of odd numbers in modified list */
-//    if (new_end != end && (end->data) % 2 != 0)  
-//    {  
-//        prev->next = end->next;  
-//        end->next = NULL;  
-//        new_end->next = end;  
-//    }  
-    return;  
-}

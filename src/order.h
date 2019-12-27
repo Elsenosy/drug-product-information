@@ -1,33 +1,26 @@
 #ifndef ORDER_H
 #define ORDER_H
 #include <string>
+#include "product.h"
+#include "LinkedList.h"
 
 using namespace std;
 
-class order
-{
-	typedef order* ptr;
-	typedef string* stptr;
-	typedef double* dptr;
-	
-	private:
-		
+class Order{
+	private:	
 		int Orderid;
-		stptr Pnames;
-		dptr prices;
-		double total;
-		int count;
 		int itemIndex;
+		int count;
+		double total;
+		LinkedList<int, Product> products;
 		static int orderidserial;
 		
 	public:
-		
-		order();
-		insertNewItem(string name, double price);
-		getOrder();
-		
-	protected:
-		
+		Order();
+		insertNewItem(Product &);
+		getOrder();	
+		void displayItems();
 };
 
+#include "order.cpp"
 #endif
