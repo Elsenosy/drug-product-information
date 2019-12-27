@@ -36,4 +36,6 @@ order::getOrder()
 		cout<<Pnames[x]<<"\t"<<prices[x]<<endl;
 		cout<<"---------------"<<endl;
 	}
+	cout<<"-----------------------"<<endl;
+	cout<<"Total: "<<total<<endl;
 }
