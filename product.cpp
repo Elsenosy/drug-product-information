@@ -18,10 +18,10 @@ product::product()
 product::setProduct()
 {
 	print("Please enter product name: ");
-	input(name);
+	getline(cin, name);
 	print("\n");
 	print("Please enter product dosage form: ");
-	input(dosageForm);
+	getline(cin, dosageForm);
 	print("\n");
 	print("Please enter product active ingredient: ");
 	getline(cin, activeIng);
