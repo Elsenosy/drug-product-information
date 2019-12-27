@@ -14,7 +14,7 @@ using namespace std;
 int Product::count = 0;
 
 Product::Product(){
-	 id = ++count;
+	id = ++count;
 };
 
 /*
@@ -78,6 +78,10 @@ void Product::getDosageForm(string &pr_dosageForm) const{
 };
 void Product::getactiveIng(string &pr_activeIng) const{
 	pr_activeIng = activeIng;
+};
+
+int Product::getId() const{
+	return id;
 };
 
 float Product::getPrice() const{

@@ -7,8 +7,6 @@
 
 int main(int argc, char** argv) {
 	
-	
-	
 	string n0 ="z1";
 	string n1 = "pr1", n2 = "pr2", n3= "pr3", n4= "pr4", n5= "pr5"; 
 	
@@ -24,10 +22,15 @@ int main(int argc, char** argv) {
 	prods[4].setData(n5 , n0 , n0 , x5);
 
 	Order order1;
-	order1.insertNewItem(prods[0]);
-	order1.insertNewItem(prods[1]);
-	order1.insertNewItem(prods[2]);
-	order1.insertNewItem(prods[3]);
+	
+	order1.insertNewItem(prods[0], 5);
+	order1.insertNewItem(prods[1], 3);
+	order1.insertNewItem(prods[2], 2);
+	order1.insertNewItem(prods[3], 1);
+	
+	order1.displayItems();
+	// Remove an item	
+	order1.removeItem(513);
 	
 	order1.displayItems();
 	

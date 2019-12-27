@@ -17,10 +17,11 @@ class Product{
 		Product();
 		setProduct();
 		setData(string &pr_name, string &dosage_form, string &pr_activeIng, float &pr_price);
-		getProduct(Product &);
 		display();
 		
 		// Getters
+		getProduct(Product &);
+		int getId() const;
 		void getName(string &) const;
 		void getDosageForm(string &) const;
 		void getactiveIng(string &) const;

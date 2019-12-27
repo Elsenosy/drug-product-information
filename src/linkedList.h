@@ -41,7 +41,7 @@ template <class keyType, class dataType> class LinkedList{
 		void deleteEnd();
 		void makeListEmpty();
 		
-		bool search(const keyType &);
+		bool search(const keyType &, dataType &);
 		void orderInsert(const keyType &, const dataType &);
 		
 		void traverse();

@@ -8,16 +8,24 @@ using namespace std;
 
 class Order{
 	private:	
+		struct Item{
+			int id;
+			Product product;
+			int quantity;
+			float total;
+		};
+	
 		int Orderid;
-		int itemIndex;
 		int count;
 		double total;
-		LinkedList<int, Product> products;
 		static int orderidserial;
+		LinkedList<int, Item> items;
+		Item item;
 		
 	public:
 		Order();
-		insertNewItem(Product &);
+		insertNewItem(Product &, int);
+		bool removeItem(int);
 		getOrder();	
 		void displayItems();
 };

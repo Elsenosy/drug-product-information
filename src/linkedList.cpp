@@ -56,24 +56,34 @@ template <class keyType, class dataType> void LinkedList<keyType, dataType>::ins
 
 template <class keyType, class dataType> void LinkedList<keyType, dataType>::insertEnd(const keyType &key, const dataType &data){
 	NodePointer p = new Node;
-	
+	toFirst();
+	toEnd();
+	p->key = key;
+	p->data = data;	
+	cursor->next = p;
+	p->next = NULL;
+	prev = cursor;
+	cursor = p;
+}
+
+// Search for a node
+template <class keyType, class dataType> bool LinkedList<keyType, dataType>::search(const keyType &key, dataType &data){
+	bool found = false;
 	toFirst();
 	while(!curIsEmpty()){
-		if(cursor->next == NULL){
-			p->key = key;
-			p->data = data;
-			
-			cursor->next = p;
-			p->next = NULL;
-			prev = cursor;
-			cursor = p;
+		if(cursor->key == key){
+			data = cursor->data;
+			found = true;
+			cout << cursor->key<<endl;
 			break;
 		}
 		advance();
 	}
+	cout << "HERE@: " << cursor->key <<endl;
+	return found;
 }
 
-// Retrieve node
+// Retrieve node data
 template <class keyType, class dataType> void LinkedList<keyType, dataType>::retrieve(dataType &pr) const{
 	pr = cursor->data;
 }
@@ -137,9 +147,10 @@ template <class keyType, class dataType> int LinkedList<keyType, dataType>::list
 // Delete the cursor node
 template <class keyType, class dataType> void LinkedList<keyType, dataType>::deleteNode(){
 	Node *q = new Node;
-	
 	if(!curIsEmpty()){
+		cout << "Here2112: " << cursor->key<<endl;
 		q = cursor->next;
+		cursor = NULL;
 		delete cursor;
 		cursor = q;
 	}
