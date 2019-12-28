@@ -12,22 +12,24 @@ class Order{
 			int id;
 			Product product;
 			int quantity;
-			float total;
+			double total;
 		};
 	
 		int Orderid;
 		int count;
 		double total;
+		bool delivered;
 		static int orderidserial;
 		LinkedList<int, Item> items;
 		Item item;
 		
 	public:
 		Order();
-		insertNewItem(Product &, int);
+		insertNewItem(Product , int);
 		bool removeItem(int);
-		getOrder();	
+//		void retrieve(int Order &) const;	
 		void displayItems();
+		void deleteItems();
 };
 
 #include "order.cpp"

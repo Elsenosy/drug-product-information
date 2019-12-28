@@ -5,37 +5,42 @@
 * Course: CS505
 * File: queueL.h
 */
-#ifndef QUEUEL_H
+#ifndef QUEUE_H
 #define QUEUE_H
-template <class Type> class QueueL{
-	public: 
-		QueueL();
-		~QueueL();
-		
-		void toFirst();
-		void toEnd();
-		void advance();
-		
-		bool isCursorEmpty() const;
-		bool isListEmpty();
-		
-		
-		void enQueue(const Type&);
-		void deQueue();
-		
-		void qFront(Type &);
-		void printQ();
-		int qLength();
+
+
+template <class D>
+class Queue
+{
+	typedef Queue* ptr;
 	
 	private:
-		class Node{
-			public:
-				Type data;
-				Node *next;
-		};
-		int count;
-		typedef Node* NodePointer ;
 		
-		NodePointer front, rear;
+		D data;
+		ptr front;
+		ptr rear;
+		ptr next;
+		int count;
+		
+	public:
+		
+		Queue();
+		enqueue(const D &d);
+		dequeue(D& d);
+		bool queueIsEmpty() const;
+		bool frontIsEmpty()const;
+		D returnFront();
+		int returnCount();
+		D pop();
+		Split(Queue h, Queue &h1, Queue &h2);
+		atFirst(ptr &p);
+		Advance(ptr &p);
+		D returnCur(ptr &p);
+		bool returnPtrNull(ptr &p);
+		splitByValue(Queue h, Queue &h1, Queue &h2);
+		
+	protected:
 };
+
+#include "queueL.cpp"
 #endif

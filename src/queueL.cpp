@@ -5,77 +5,181 @@
 * Course: CS505
 * File: queueL.cpp
 */
+#ifndef QUEUE_IMP 
+#define QUEUE_IMP
 #include "queueL.h"
 #include <iostream>
+#include <string>
+
 using namespace std;
-// Constructor
-template <class Type> QueueL<Type>::QueueL(){
-	front=NULL; rear=NULL; count=0;
-};
 
+#define print(x) cout<<x
+#define printn(x) cout<<x<<endl;
 
-template <class Type> int QueueL<Type>::qLength(){
-	return count;
-};
+template <class D>
+Queue<D>::Queue()
+{
+	front = NULL;
+	rear = NULL;
+	count = 0;
+}
 
-template <class Type> void QueueL<Type>::enQueue(const Type &item){
-
-	NodePointer newItem = new Node;
-	newItem->data = item;
-	newItem->next = NULL;
-	
-	if(isListEmpty()){
-		front = rear = newItem;
-	}else{
-		rear->next = newItem;		
-		rear = newItem;	
+template <class D>
+Queue<D>::enqueue(const D &d)
+{
+	ptr temp = new Queue();
+	temp->data = d;
+	if (queueIsEmpty())
+	{
+		front = temp;
+		rear = temp;
+		front->next = NULL;
+	}
+	else if (!queueIsEmpty())
+	{
+		rear->next = temp;
+		rear = temp;
+		rear->next == NULL;
 	}
 	count++;
 }
 
-template <class Type> void QueueL<Type>::deQueue(){
-	if(isListEmpty()){
-		cout << "Queue is empty"<<endl;	
-		return;
+template <class D>
+bool Queue<D>::queueIsEmpty() const
+{
+	return (count == 0);
+}
+
+template <class D>
+bool Queue<D>::frontIsEmpty() const
+{
+	return (front == NULL);
+}
+
+template <class D>
+D Queue<D>::returnFront()
+{
+	return front->data;
+}
+
+template <class D>
+Queue<D>::dequeue(D& d)
+{
+	if (queueIsEmpty())
+	{
+		printn("The queue is empty!")
+		
+	}
+	else if (!queueIsEmpty())
+	{
+		ptr temp;
+		temp = front;
+		d = temp->data;
+		front = front->next;
+		delete temp;
 	}
 	
-	if(!isListEmpty()){
-		NodePointer tmp = new Node;
-		tmp = front->next;
-		delete front;
-		front = tmp;
+	count--;
+}
+
+template <class D>
+int Queue<D>::returnCount()
+{
+	return count;
+}
+
+template <class D>
+D Queue<D>::pop()
+{
+	D xt;
+	ptr temp;
+	temp = front;
+	if (queueIsEmpty())
+	{
+		print("\n\n");
+		printn("Queue is Empty!");
+	}
+	else
+	{
+		while (temp->next != rear && temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+	
+		xt = rear->data;
+		rear = temp;
+		temp = temp->next;
+		rear->next = NULL;
+		delete temp;
 		count--;
+		return xt;
+	}
+	
+}
+
+template<class D>
+Queue<D>::Split(Queue h, Queue &h1, Queue &h2)
+{
+	ptr temp;
+	h.atFirst(temp);
+	
+	while(!h.returnPtrNull(temp))
+	{
+		if (h.returnCur(temp) % 2 != 0)
+		{	
+			h1.enqueue(h.returnCur(temp));	
+		}
+		
+		else
+		{
+			h2.enqueue(h.returnCur(temp));
+		}
+
+		h.Advance(temp);
+	}
+
+}
+
+template<class D>
+Queue<D>::atFirst(ptr &p)
+{
+	p = front;
+}
+
+template<class D>
+Queue<D>::Advance(ptr &p)
+{
+	p = p->next;
+}
+
+template<class D>
+D Queue<D>::returnCur(ptr &p)
+{
+	return p->data;
+}
+
+template<class D>
+bool Queue<D>::returnPtrNull(ptr &p)
+{
+	return (p == NULL);
+}
+
+template <class D>
+Queue<D>::splitByValue(Queue h, Queue &h1, Queue &h2)
+{
+	D xr;
+	while (!h.queueIsEmpty())
+	{
+		h.dequeue(xr);
+		if (xr % 2 != 0) 
+		{
+			h1.enqueue(xr);
+		}
+		else 
+		{
+			h2.enqueue(xr);
+		}
 	}
 }
-template <class Type> void QueueL<Type>::qFront(Type &item){
-	if(isListEmpty()){
-		cout << "Queue is empty"<<endl;	
-		return;
-	}
-	
-	item = front->data;
-};
-
-template <class Type> bool QueueL<Type>::isListEmpty(){
-	return front == NULL ? true : false;
-};
-
-template <class Type> void QueueL<Type>::printQ(){
-	if(isListEmpty()){
-		cout << "Queue is empty";
-		return;
-	}
-	
-	NodePointer tmp = front;
-	while(tmp != NULL){
-		cout <<" "<< tmp->data << ", ";
-		tmp = tmp->next;
-	}
-	cout << endl;
-};
-
-// Destructor
-template <class Type> QueueL<Type>::~QueueL(){
-	delete front; delete rear;
-};
+#endif
 

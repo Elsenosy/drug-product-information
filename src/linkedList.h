@@ -46,7 +46,7 @@ template <class keyType, class dataType> class LinkedList{
 		
 		void traverse();
 		void evenOddOrder();
-		
+	
 		private:
 			class Node{
 				public:

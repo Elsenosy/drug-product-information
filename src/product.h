@@ -16,6 +16,7 @@ class Product{
 	public:
 		Product();
 		setProduct();
+		setID(const int);
 		setData(string &pr_name, string &dosage_form, string &pr_activeIng, float &pr_price);
 		display();
 		

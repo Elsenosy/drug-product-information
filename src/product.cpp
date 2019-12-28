@@ -21,21 +21,20 @@ Product::Product(){
 * Set product's basic data
 */
 Product::setProduct()
-{
+{	
+	cout<<endl;
 	print("Please enter product name: ");
 	getline(cin, name);
-
-	print("\n");
+	cout << endl;
 	print("Please enter product dosage form: ");
 	getline(cin, dosageForm);
-
-	print("\n");
+	cout << endl;
 	print("Please enter product active ingredient: ");
 	getline(cin, activeIng);
-	print("\n");
+	cout << endl;
 	print("Please enter product price: ");
 	input(price);
-	print("\n");
+	
 }
 
 /*
@@ -59,15 +58,16 @@ Product::setData(string &pr_name, string &dosage_form, string &pr_activeIng, flo
 	activeIng = pr_activeIng;
 	price = pr_price;
 }
+
+Product::setID(const int pr_id){
+	id = pr_id;
+};
+
 /*
 * Display product data
 */
-Product::display()
-{
-	 printn("Product name: "<<name);
-	 printn("Product dosage form: "<<dosageForm);
-	 printn("Product active ingredient: "<<activeIng);
-	 printn("Product price: "<<price);
+Product::display(){
+	cout << id << " " << name << " \t\t " << dosageForm << "\t\t" << activeIng << "\t\t" << price << " L.E" << endl;
 }
 
 void Product::getName(string &pr_name) const{
